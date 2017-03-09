@@ -1,0 +1,13 @@
+{
+    "name": "dibmartins/superlogica",
+    "description": "Wrapper php para comunicação com a api superlogica",
+    "type": "library",
+    "license": "Apache",
+    "authors": [
+        {
+            "name": "Diego Botelho",
+            "email": "dibmartins@gmail.com"
+        }
+    ],
+    "require": {}
+}

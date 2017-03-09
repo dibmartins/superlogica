@@ -1,0 +1,37 @@
+version: '2'
+
+services:
+
+    php_sl:
+        container_name: php_sl
+        image: phalconphp-3.0.2/php:7.0-fpm
+        networks:
+            nw_sl:
+                ipv4_address: 172.30.0.20
+        volumes:
+            - /docker/superlogica/www/superlogica/src/:/var/www/superlogica/
+            - /docker/superlogica/conf/php:/usr/local/etc/php/
+            - /docker/superlogica/logs/:/var/log/php/
+
+    superlogica:
+        container_name: superlogica
+        image: nginx:latest
+        ports:
+            - 90:90
+        networks:
+            nw_sl:
+                ipv4_address: 172.30.0.30
+        volumes:
+            - /docker/superlogica/conf/nginx/:/etc/nginx/conf.d/
+            - /docker/superlogica/logs/:/var/log/nginx/
+            - /docker/superlogica/www/superlogica/src/:/var/www/superlogica/
+        links:
+            - php_sl
+
+networks:
+
+    nw_sl:
+        ipam:
+            driver: default
+            config:
+                 - subnet: 172.30.0.0/16
