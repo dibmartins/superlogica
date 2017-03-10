@@ -3,17 +3,12 @@
     "description"   : "Wrapper php para comunicação com a api superlogica",
     "type"          : "library",
     "license"       : "Apache",
+    "version"       : "1.0.0",
     "authors": [{
         "name"  : "Diego Botelho",
         "email" : "dibmartins@gmail.com"
     }],
     "require": {
 
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0-dev"
-        }
-    },
-    "minimum-stability": "stable"
+    }
 }
