@@ -9,7 +9,7 @@ services:
             nw_sl:
                 ipv4_address: 172.30.0.20
         volumes:
-            - /docker/superlogica/www/superlogica/src/:/var/www/superlogica/
+            - /docker/superlogica/www/superlogica/:/var/www/superlogica/
             - /docker/superlogica/conf/php:/usr/local/etc/php/
             - /docker/superlogica/logs/:/var/log/php/
 
@@ -24,7 +24,7 @@ services:
         volumes:
             - /docker/superlogica/conf/nginx/:/etc/nginx/conf.d/
             - /docker/superlogica/logs/:/var/log/nginx/
-            - /docker/superlogica/www/superlogica/src/:/var/www/superlogica/
+            - /docker/superlogica/www/superlogica/:/var/www/superlogica/
         links:
             - php_sl
 

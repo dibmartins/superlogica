@@ -3,12 +3,23 @@
     "description"   : "Wrapper php para comunicação com a api superlogica",
     "type"          : "library",
     "license"       : "Apache",
-    "version"       : "1.0.0",
     "authors": [{
         "name"  : "Diego Botelho",
         "email" : "dibmartins@gmail.com"
     }],
+    
     "require": {
+        "php-curl-class/php-curl-class" : "^7.1"
+    },
+    
+    "autoload": {
+        
+        "psr-4": {
+            "Superlogica\\": "src/Superlogica"
+        },
 
+        "classmap" : [
+            "src/Superlogica"
+        ]
     }
 }
