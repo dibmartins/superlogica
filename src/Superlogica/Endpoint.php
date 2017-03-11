@@ -31,7 +31,7 @@ abstract class Endpoint {
      * @param array $data Parâmetros de cadastro de cliente
      * @return string Resposta do serviço
      */
-    public function post($data){
+    public function post($data = null){
         
         try{
             
@@ -50,7 +50,7 @@ abstract class Endpoint {
      * @param array $data Parâmetros de cadastro de cliente
      * @return string Resposta do serviço
      */
-    public function put($data){
+    public function put($data = null){
         
         try{
             
@@ -69,7 +69,7 @@ abstract class Endpoint {
      * @param array $data Parâmetros de cadastro de cliente
      * @return string Resposta do serviço
      */
-    public function get($data){
+    public function get($data = null){
         
         try{
             
@@ -88,7 +88,7 @@ abstract class Endpoint {
      * @param array $data Parâmetros de cadastro de cliente
      * @return string Resposta do serviço
      */
-    public function delete($data){
+    public function delete($data = null){
         
         try{
             

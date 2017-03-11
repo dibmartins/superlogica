@@ -61,6 +61,7 @@ class Api {
      * @param string $action post|put|get|delete
      * @param string endpoint
      * @param array $data Parâmetros da requisicao
+     * @throws \Exception
      * @return string Resposta do serviço
      */
     public function execute($action, $endpoint, $data){
@@ -72,10 +73,11 @@ class Api {
             $this->curl->$action($url, $data);
 
             if($this->curl->error) {
-                throw new \Exception($this->curl->errorCode . ': ' . $this->curl->errorMessage);
+
+                throw new \Exception($this->curl->errorMessage, $this->curl->errorCode);
             }
 
-            return $this->curl->rawResponse;
+            return $this->curl->response;
         }
         catch(\Exception $e){
             
