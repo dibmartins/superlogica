@@ -7,10 +7,9 @@ try{
     $clientes = new \Superlogica\Clientes($api);
 
     $response = $clientes->put([
-        'id'                    => 9,
-        'ST_NOME_SAC'           => 'Diego Botelho Martins',
-        'ST_NOMEREF_SAC'        => 'Dibmartins',
-        'ST_DIAVENCIMENTO_SAC'  => '10'
+        'ST_NOME_SAC'           => 'Cliente 5',
+        'ST_NOMEREF_SAC'        => 'Nome Fantasia 5',
+        'ST_DIAVENCIMENTO_SAC'  => '20',
     ]);
 
     echo '<pre>';
