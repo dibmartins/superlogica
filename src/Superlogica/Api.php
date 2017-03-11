@@ -2,6 +2,12 @@
 
 namespace Superlogica;
 
+/**
+ * Responsável pela comunicação com a api superlogica
+ * 
+ * @author Diego Botelho <dibmartins@gmail.com>
+ * @copyright (c) 2017
+ */
 class Api {
     
     private $curl;

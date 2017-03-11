@@ -2,6 +2,13 @@
 
 namespace Superlogica;
 
+/**
+ * Endpoint de formas de recebimento
+ * 
+ * @link http://superlogica.com/developers/api/#!/Formasrecebimentos.json
+ * @author Diego Botelho <dibmartins@gmail.com>
+ * @copyright (c) 2017
+ */
 class FormasRecebimento extends Endpoint{
     
     /**

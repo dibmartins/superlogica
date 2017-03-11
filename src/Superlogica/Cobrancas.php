@@ -2,6 +2,13 @@
 
 namespace Superlogica;
 
+/**
+ * Endpoint de cobranças
+ * 
+ * @link http://superlogica.com/developers/api/#!/Cobrancas.json
+ * @author Diego Botelho <dibmartins@gmail.com>
+ * @copyright (c) 2017
+ */
 class Cobrancas extends Endpoint{
     
     /**
