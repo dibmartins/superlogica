@@ -7,15 +7,16 @@ try{
     $clientes = new \Superlogica\Clientes($api);
 
     $response = $clientes->put([
-        'ST_NOME_SAC'           => 'Cliente 5',
-        'ST_NOMEREF_SAC'        => 'Nome Fantasia 5',
-        'ST_DIAVENCIMENTO_SAC'  => '20',
+        'ID_SACADO_SAC'         => 9,
+        'ST_NOME_SAC'           => 'Mariana Abreu',
+        'ST_NOMEREF_SAC'        => 'marifmarra',
+        'ST_DIAVENCIMENTO_SAC'  => '12'
     ]);
 
     echo '<pre>';
     print_r($response);
 }
-catch(\Exception $e){
+catch(\Superlogica\Exception $e){
     
-    echo $e->getMessage();
+    var_dump($e);
 }

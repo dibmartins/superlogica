@@ -2,4 +2,4 @@
 
 require_once('../../vendor/autoload.php');
 
-return new \Superlogica\Api('3Juh5oflLJEO', 'fRtGarWJ4aCT');
+return new \Superlogica\Api('https://api.superlogica.net/v2/financeiro/', '3Juh5oflLJEO', 'fRtGarWJ4aCT');

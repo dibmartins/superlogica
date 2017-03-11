@@ -15,7 +15,7 @@ try{
     echo '<pre>';
     print_r($response);
 }
-catch(\Exception $e){
+catch(\Superlogica\Exception $e){
     
-    echo $e->getMessage();
+    var_dump($e);
 }

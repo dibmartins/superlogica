@@ -15,44 +15,12 @@ class Api {
      * @param string $appToken
      * @param string $accessToken
      */
-    public function __construct($appToken, $accessToken){
+    public function __construct($url, $appToken, $accessToken){
 
         $this->curl        = new \Curl\Curl();
-        $this->url         = 'https://api.superlogica.net/v2/financeiro/';
+        $this->url         = $url;
         $this->appToken    = $appToken;
         $this->accessToken = $accessToken;
-
-        $this->curl->setOpt(CURLOPT_RETURNTRANSFER , true);
-        $this->curl->setOpt(CURLOPT_FOLLOWLOCATION , true);
-        $this->curl->setOpt(CURLOPT_SSL_VERIFYPEER , false);
-        $this->curl->setOpt(CURLOPT_SSL_VERIFYHOST , false);
-        $this->curl->setOpt(CURLOPT_HTTPHEADER     , $this->getHeader());
-    }
-
-    /**
-     * Retorna a url base da api a ser concatenada com os endpoints
-     * 
-     * @return string
-     */
-    public function getUrl(){
-
-        return $this->url;
-    }
-
-    /**
-     * Formata o header da requisição
-     * 
-     * @param string|int $identificador Identificador do sacado
-     * @param array $data Parâmetros de cadastro de cliente
-     * @return array
-     */
-    public function getHeader(){
-        
-        return [
-            'Content-Type: application/x-www-form-urlencoded',
-            "app_token: $this->appToken",
-            "access_token: $this->accessToken",
-        ];
     }
 
     /**
@@ -68,13 +36,20 @@ class Api {
         
         try{
             
-            $url = $this->getUrl() . $endpoint;
+            $this->curl->setOpt(CURLOPT_RETURNTRANSFER , true);
+            $this->curl->setOpt(CURLOPT_FOLLOWLOCATION , true);
+            $this->curl->setOpt(CURLOPT_SSL_VERIFYPEER , false);
+            $this->curl->setOpt(CURLOPT_SSL_VERIFYHOST , false);
+            
+            $this->curl->setHeader('Content-Type' , 'application/x-www-form-urlencoded');
+            $this->curl->setHeader('app_token'    , $this->appToken);
+            $this->curl->setHeader('access_token' , $this->accessToken);
 
-            $this->curl->$action($url, $data);
+            $this->curl->$action($this->url . $endpoint, $data);
 
             if($this->curl->error) {
 
-                throw new \Exception($this->curl->errorMessage, $this->curl->errorCode);
+                throw new \Superlogica\Exception($this->curl);
             }
 
             return $this->curl->response;
