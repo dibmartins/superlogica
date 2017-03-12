@@ -7,6 +7,49 @@ $ composer require dibmartins/superlogica
 # Get Started
 http://superlogica.com/developers/
 
+# Examples
+
+```php
+try{
+
+    $api = require_once('api.php');
+
+    $clientes = new \Superlogica\Clientes($api);
+
+    $response = $clientes->post([
+        'ST_NOME_SAC'           => 'Acme',
+        'ST_NOMEREF_SAC'        => 'Acme LTDA.',
+        'ST_DIAVENCIMENTO_SAC'  => '20',
+    ]);
+
+    echo '<pre>';
+    print_r($response);
+}
+catch(\Superlogica\Exception $e){
+    
+    var_dump($e);
+}
+```
+
+```php
+try{
+
+    $api = require_once('api.php');
+
+    $clientes = new \Superlogica\Clientes($api);
+
+    $response = $clientes->get(['id' => 1]);
+
+    echo '<pre>';
+    print_r($response);
+}
+catch(\Superlogica\Exception $e){
+    
+    var_dump($e);
+}
+```
+
+
 ### Contribute
 1. Check for open issues or open a new issue to start a discussion around a bug or feature.
 1. Fork the repository on GitHub to start making your changes.
