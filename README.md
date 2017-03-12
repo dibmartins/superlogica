@@ -9,10 +9,13 @@ http://superlogica.com/developers/
 
 # Examples
 
+Para cadastrar um cliente na superlogica:
 ```php
 try{
 
-    $api = require_once('api.php');
+    require_once('../../vendor/autoload.php');
+
+    $api = new \Superlogica\Api('https://api.superlogica.net/v2/financeiro/', 'your_app_token', 'your_access_token');
 
     $clientes = new \Superlogica\Clientes($api);
 
@@ -22,8 +25,7 @@ try{
         'ST_DIAVENCIMENTO_SAC'  => '20',
     ]);
 
-    echo '<pre>';
-    print_r($response);
+    var_dump($response);
 }
 catch(\Superlogica\Exception $e){
     
@@ -31,17 +33,19 @@ catch(\Superlogica\Exception $e){
 }
 ```
 
+Para obter um cliente na superlogica:
 ```php
 try{
 
-    $api = require_once('api.php');
+    require_once('../../vendor/autoload.php');
+
+    $api = new \Superlogica\Api('https://api.superlogica.net/v2/financeiro/', 'your_app_token', 'your_access_token');
 
     $clientes = new \Superlogica\Clientes($api);
 
     $response = $clientes->get(['id' => 1]);
 
-    echo '<pre>';
-    print_r($response);
+    var_dump($response);
 }
 catch(\Superlogica\Exception $e){
     
