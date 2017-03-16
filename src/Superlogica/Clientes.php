@@ -17,5 +17,23 @@ class Clientes extends Endpoint{
     public function getEndpoint(){
         
         return 'clientes';
-    }    
+    }
+    
+    /**
+     * Consulta por registros no endpoint
+     * 
+     * @param array $data = null Parâmetros da requisição
+     * @return object Resposta do serviço
+     */
+    public function token($data = null){
+        
+        try{
+            
+            return $this->api->execute('get', 'clientes/token', $data);
+        }
+        catch(\Exception $e){
+            
+            throw $e;
+        }        
+    }
 }
