@@ -2,4 +2,5 @@
 
 require_once('../../vendor/autoload.php');
 
-return new \Superlogica\Api('https://api.superlogica.net/v2/financeiro/', '3Juh5oflLJEO', 'fRtGarWJ4aCT');
+// Obtenha os tokens de teste em: http://superlogica.com/dev/trial/
+return new \Superlogica\Api('https://api.superlogica.net/v2/financeiro/', 'your_app_token', 'your_access_token');
