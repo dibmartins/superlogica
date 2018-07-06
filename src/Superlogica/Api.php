@@ -6,7 +6,8 @@ namespace Superlogica;
  * Responsável pela comunicação com a api superlogica
  * 
  * @author Diego Botelho <dibmartins@gmail.com>
- * @copyright (c) 2017
+ * @author Michel Teixeira <michel@odig.net>
+ * @copyright (c) 2017-2018
  */
 class Api {
     
@@ -15,6 +16,20 @@ class Api {
     private $appToken;
     private $accessToken;
     private $timeout;
+    private $header = array();
+
+    /**
+     * Adiciona um item no Header
+     * 
+     * @param string $key
+     * @param string $value
+     */
+    public function addHeader($key, $value){
+        
+        if(!empty($key) && !empty($value)){
+            $this->header[$key] = $value;
+        }
+    }
 
     /**
      * Construtor
@@ -31,6 +46,10 @@ class Api {
         $this->appToken    = $appToken;
         $this->accessToken = $accessToken;
         $this->timeout     = $timeout;
+
+        $this->addHeader('Content-Type' , 'application/x-www-form-urlencoded');
+        $this->addHeader('app_token'    , $this->appToken);
+        $this->addHeader('access_token' , $this->accessToken);
     }
 
     /**
@@ -52,9 +71,10 @@ class Api {
             $this->curl->setOpt(CURLOPT_SSL_VERIFYPEER , false);
             $this->curl->setOpt(CURLOPT_SSL_VERIFYHOST , false);
             
-            $this->curl->setHeader('Content-Type' , 'application/x-www-form-urlencoded');
-            $this->curl->setHeader('app_token'    , $this->appToken);
-            $this->curl->setHeader('access_token' , $this->accessToken);
+            foreach($this->header as $key => $value){
+                
+                $this->curl->setHeader($key, $value);
+            }
 
             $this->curl->setConnectTimeout($this->timeout);
 

@@ -1,0 +1,61 @@
+run.config:
+  fs_watch: true
+  engine: php
+  engine.config:
+    runtime: php-7.2
+    extensions:
+      - curl
+      - mbstring
+      - zip
+      - dom
+    
+    zend_extensions:
+      - opcache
+    
+    dev_zend_extensions:
+      add:
+        - xdebug
+      rm:
+        - opcache
+    
+    webserver: 'nginx'
+    document_root: /
+    nginx_index_list:
+      - index.php
+      - index.html
+    nginx_default_gateway: 'index.php'
+
+    php_fpm_events_mechanism: 'epoll'
+    php_fpm_max_children: 20
+    php_fpm_max_spare_servers: 1
+    php_fpm_max_requests: 128
+
+    composer_install: "composer install --no-interaction --prefer-source"
+
+  extra_steps:
+    - cp nginx.conf /data/etc/nginx/nginx.conf
+
+  extra_path_dirs:
+    - vendor/bin
+
+  build_triggers:
+    - nginx.conf
+
+web.site:
+  start:
+    php: php-server
+    nginx: start-nginx
+  writable_dirs:
+    - tmp/cache
+    - app/cache
+  network_dirs:
+    data.storage:
+      - public/uploads
+  log_watch:
+    app[error]: /app/tmp/application.log
+    php[error]: /data/var/log/php/php_error.log
+    php[fpm]: /data/var/log/php/php-fpm.log
+    nginx[error]: /data/var/log/nginx/error.log
+
+data.storage:
+  image: nanobox/unfs:0.9
