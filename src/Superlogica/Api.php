@@ -16,7 +16,7 @@ class Api {
     private $appToken;
     private $accessToken;
     private $timeout;
-    private $header = array();
+    private $headers = array();
 
     /**
      * Adiciona um item no Header
@@ -27,7 +27,7 @@ class Api {
     public function addHeader($key, $value){
         
         if(!empty($key) && !empty($value)){
-            $this->header[$key] = $value;
+            $this->headers[$key] = $value;
         }
     }
 
@@ -71,7 +71,7 @@ class Api {
             $this->curl->setOpt(CURLOPT_SSL_VERIFYPEER , false);
             $this->curl->setOpt(CURLOPT_SSL_VERIFYHOST , false);
             
-            foreach($this->header as $key => $value){
+            foreach($this->headers as $key => $value){
                 
                 $this->curl->setHeader($key, $value);
             }
